@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Button,
   Image,
+  Pressable,
 } from "react-native";
 import { Camera, CameraType } from "expo-camera";
 import * as ImagePicker from "expo-image-picker";
@@ -68,21 +69,185 @@ export default function Add({ navigation }) {
           ratio={"1:1"}
         />
       </View>
-      <Button
+      {image && (
+        <Image source={{ uri: image }} style={{ flex: 1, marginBottom: 20 }} />
+      )}
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          margin: 5,
+          // marginLeft: 5,
+        }}
+      >
+        <Pressable
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            width: 70,
+            height: 40,
+            borderWidth: 2,
+            borderRadius: 50,
+            // justifyContent: "center",
+            // paddingVertical: 7,
+            // paddingHorizontal: 17,
+            // borderRadius: 4,
+            // elevation: 13,
+            // marginBottom: 6,
+            // backgroundColor: "black",
+            // // margin: 60,/
+            // // marginTop: 10,
+            // shadowColor: "#52006A",
+            // borderColor: "black",
+            // borderRadius: 0,
+            // borderWidth: 0.2,
+            // width: 30,
+            // height: 30,
+          }}
+          onPress={() => {
+            setType(
+              type === CameraType.back ? CameraType.front : CameraType.back
+            );
+          }}
+        >
+          <Image
+            source={{
+              uri: "https://static.thenounproject.com/png/59139-200.png",
+            }}
+            style={{ flex: 1, aspectRatio: 1 / 1 }}
+          />
+          {/* <Text
+            style={{
+              fontSize: 16,
+              lineHeight: 21,
+              fontWeight: "bold",
+              letterSpacing: 0.25,
+              color: "red",
+            }}
+          >
+            Flip
+          </Text> */}
+        </Pressable>
+
+        {/* <Button
         title="Flip Image"
         onPress={() => {
           setType(
             type === CameraType.back ? CameraType.front : CameraType.back
           );
         }}
-      ></Button>
-      <Button title="Take Picture" onPress={() => takePicture()} />
-      <Button title="Upload" onPress={() => pickImage()} />
-      <Button
+      ></Button> */}
+        <Pressable
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            width: 70,
+            height: 40,
+            borderWidth: 2,
+            borderRadius: 50,
+            // alignItems: "center",
+            // // justifyContent: "center",
+            // // paddingVertical: 7,
+            // // paddingHorizontal: 17,
+            // borderRadius: 4,
+            // // elevation: 3,
+            // marginBottom: 6,
+            // backgroundColor: "white",
+            // // margin: 60,/
+            // marginTop: 10,
+
+            // shadowColor: "#52006A",
+            // borderColor: "black",
+            // borderRadius: 0,
+            // borderWidth: 0.2,
+          }}
+          onPress={() => {
+            takePicture();
+          }}
+        >
+          <Image
+            source={{
+              uri: "https://w7.pngwing.com/pngs/187/938/png-transparent-pointing-finger-illustration-pointer-computer-icons-cursor-point-and-click-touch-miscellaneous-text-logo.png",
+            }}
+            style={{ flex: 1, aspectRatio: 1 / 1 }}
+          />
+        </Pressable>
+        <Pressable
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            width: 70,
+            height: 40,
+            borderWidth: 2,
+            borderRadius: 50,
+            // alignItems: "center",
+            // // justifyContent: "center",
+            // // paddingVertical: 7,
+            // // paddingHorizontal: 17,
+            // borderRadius: 4,
+            // // elevation: 3,
+            // marginBottom: 6,
+            // backgroundColor: "white",
+            // // margin: 60,/
+            // marginTop: 10,
+
+            // shadowColor: "#52006A",
+            // borderColor: "black",
+            // borderRadius: 0,
+            // borderWidth: 0.2,
+          }}
+          onPress={() => {
+            pickImage();
+          }}
+        >
+          <Image
+            source={{
+              uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyRoevcodO52aTsEqIhAeiXFtRrlLfFlPvUmBh5ae1BOCqh2zGxmOpc8rjPKj_DcfLK7g&usqp=CAU",
+            }}
+            style={{ flex: 1, aspectRatio: 1 / 1 }}
+          />
+        </Pressable>
+
+        {/* <Button title="Take Picture" onPress={() => takePicture()} /> */}
+        {/* <Button title="Upload" onPress={() => pickImage()} /> */}
+        {/* <Button
         title="Save"
         onPress={() => navigation.navigate("Save", { image })}
-      />
-      {image && <Image source={{ uri: image }} style={{ flex: 1 }} />}
+      /> */}
+        <Pressable
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            width: 70,
+            height: 40,
+            borderWidth: 2,
+            borderRadius: 50,
+            // alignItems: "center",
+            // // justifyContent: "center",
+            // // paddingVertical: 7,
+            // // paddingHorizontal: 17,
+            // borderRadius: 4,
+            // // ele/vation: 3,
+            // marginBottom: 6,
+            // backgroundColor: "white",
+            // // margin: 60,/
+            // marginTop: 10,
+
+            // shadowColor: "#52006A",
+            // borderColor: "black",
+            // borderRadius: 0,
+            // borderWidth: 0.2,
+          }}
+          onPress={() => navigation.navigate("Save", { image })}
+        >
+          <Image
+            source={{
+              uri: "https://w7.pngwing.com/pngs/860/512/png-transparent-instagram-social-media-save-instagram-instagram-save-social-media-logo-icon-thumbnail.png",
+            }}
+            style={{ flex: 1, aspectRatio: 1 / 1 }}
+          />
+        </Pressable>
+      </View>
     </View>
   );
 }

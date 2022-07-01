@@ -23,11 +23,13 @@ export const users = (state = initialState, action) => {
       for (let i = 0; i < state.feed.length; i++) {
         ap.push(state.feed[i]);
       }
+
       if (action.posts != undefined) {
         for (let i = 0; i < action.posts.length; i++) {
           ap.push(action.posts[i]);
         }
       }
+      ap = [...new Set(ap)];
 
       return {
         ...state,

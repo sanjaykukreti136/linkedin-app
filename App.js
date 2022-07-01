@@ -13,7 +13,7 @@ import LoginScreen from "./components/auth/Login";
 import MainScreen from "./components/Main";
 import SaveScreen from "./components/main/Save";
 import CommentScreen from "./components/main/Comment";
-
+import ApplyScreen from "./components/main/Apply";
 const Stack = createStackNavigator();
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
@@ -94,8 +94,8 @@ export class App extends Component {
     return (
       <Provider store={store}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Main">
-            <Stack.Screen name="Main" component={MainScreen} />
+          <Stack.Navigator initialRouteName="Linkedin">
+            <Stack.Screen name="Linkedin" component={MainScreen} />
             <Stack.Screen
               name="Add"
               component={AddScreen}
@@ -109,6 +109,11 @@ export class App extends Component {
             <Stack.Screen
               name="Comment"
               component={CommentScreen}
+              navigation={this.props.navigation}
+            />
+            <Stack.Screen
+              name="Apply"
+              component={ApplyScreen}
               navigation={this.props.navigation}
             />
           </Stack.Navigator>

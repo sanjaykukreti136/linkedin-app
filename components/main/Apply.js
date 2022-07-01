@@ -13,13 +13,25 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchUsersData } from "../../redux/actions/index";
 
-function Comment(props) {
+function Apply(props) {
   const [comments, setComments] = useState([]);
   const [postId, setPostId] = useState("");
   const [text, setText] = useState("");
   useEffect(() => {
+    function validURL(str) {
+      var pattern = new RegExp(
+        "^(https?:\\/\\/)?" + // protocol
+          "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+          "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+          "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+          "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+          "(\\#[-a-z\\d_]*)?$",
+        "i"
+      ); // fragment locator
+      return !!pattern.test(str);
+    }
     function matchUserToComment(comments) {
-      console.log(props.users);
+      //   console.log(props.users);
       for (let i = 0; i < comments.length; i++) {
         if (comments[i].hasOwnProperty("user")) {
           continue;
@@ -31,7 +43,13 @@ function Comment(props) {
           comments[i].user = user;
         }
       }
-      setComments(comments);
+      let a = [];
+      for (let i = 0; i < comments.length; i++) {
+        if (validURL(comments[i].text)) {
+          a.push(comments[i]);
+        }
+      }
+      setComments(a);
     }
     if (props.route.params.postId !== postId) {
       firebase
@@ -163,4 +181,4 @@ const mapStateToProps = (store) => ({
 const mapDispatchProps = (dispatch) =>
   bindActionCreators({ fetchUsersData }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchProps)(Comment);
+export default connect(mapStateToProps, mapDispatchProps)(Apply);

@@ -148,7 +148,7 @@ export function fetchUsersFollowingLikes(uid, postId) {
       .collection("likes")
       .doc(firebase.auth().currentUser.uid)
       .onSnapshot((snapshot) => {
-        // console.log(snapshot.query);
+        
         const postId = snapshot.ref.path.split("/")[3];
         let currentUserLike = false;
         if (snapshot.exists) {

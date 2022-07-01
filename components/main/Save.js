@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import firebase from "firebase";
 require("firebase/firestore");
 require("firebase/firebase-storage");
-import { View, Text, StyleSheet, TextInput, Image, Button } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Image,
+  Button,
+  Pressable,
+} from "react-native";
 export default function Save(props) {
   const [caption, setCaption] = useState("");
   const uploadImage = async () => {
@@ -54,15 +62,60 @@ export default function Save(props) {
     <View style={{ flex: 1 }}>
       <Image source={{ uri: props.route.params.image }} />
       <TextInput
+        style={{
+          margin: 60,
+          marginTop: 100,
+
+          // borderWidth: 1,
+          width: 250,
+          textAlign: "center",
+          height: 60,
+          backgroundColor: "white",
+          color: "black",
+          elevation: 40,
+          shadowColor: "#87ceeb",
+          borderColor: "black",
+          borderRadius: 0,
+          borderWidth: 0.2,
+        }}
         placeholder="Write Caption.."
         onChangeText={(caption) => setCaption(caption)}
       />
-      <Button
-        title="Post"
+      <Pressable
+        style={{
+          alignItems: "center",
+          justifyContent: "center",
+          paddingVertical: 12,
+          paddingHorizontal: 32,
+          borderRadius: 4,
+          elevation: 3,
+          backgroundColor: "white",
+          margin: 60,
+          marginTop: 30,
+          elevation: 40,
+          shadowColor: "#52006A",
+          borderColor: "black",
+          borderRadius: 0,
+          borderWidth: 0.2,
+        }}
         onPress={() => {
+          // navigation.navigate("Login");
+          // this.onSignUp();
           uploadImage();
         }}
-      />
+      >
+        <Text
+          style={{
+            fontSize: 16,
+            lineHeight: 21,
+            fontWeight: "bold",
+            letterSpacing: 2,
+            color: "blue",
+          }}
+        >
+          POST
+        </Text>
+      </Pressable>
     </View>
   );
 }
